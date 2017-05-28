@@ -7,8 +7,8 @@
 	
 void encriptCiclico(int clave, char palabra[])  {
 	char enc[1024] = {0};
-	char abcMinus[27] = "abcdefghijklmnopqrstuvwxyz";
-	char abcMayus[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char abcMinus[28] = "abcdefghijklmnopqrstuvwxyz ";
+	char abcMayus[28] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
 	int lenPalabra, lenAbc, i, j, bandera;
 	lenPalabra = strlen(palabra);
 	lenAbc = strlen(abcMinus);
@@ -17,10 +17,10 @@ void encriptCiclico(int clave, char palabra[])  {
 		for(j = 0; j < lenAbc; j++) {
 			if(abcMinus[j] == palabra[i]) {
 				bandera = 1;
-				if((j+clave) < 26){
+				if((j+clave) < 27){
 					enc[i] = abcMinus[j+clave];
 				} else {
-					enc[i] = abcMinus[(j+clave) - 26];
+					enc[i] = abcMinus[(j+clave) - 27];
 				}
 			}
 		}
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 		encriptCiclico(clave,argv[2]);
 	} else {
 		printf("Ingrese la palabra:\n");
-		gets(palabra);
+		fgets(palabra, 100, stdin);
 		printf("Ingrese la clave numerica\n");
 		scanf("%d", &clave);
 		encriptCiclico(clave, palabra);
