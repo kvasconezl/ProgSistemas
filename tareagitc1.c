@@ -30,7 +30,7 @@ void encriptCiclico(int clave, char palabra[])  {
 			for(j = 0; j < lenAbc; j++) {
 				if(abcMayus[j] == palabra[i]) {
 					bandera = 1;
-					if((j+clave) < 26){
+					if((j+clave) < 27){
 						enc[i] = abcMayus[j+clave];
 					} else {
 						enc[i] = abcMayus[(j+clave) - 26];
@@ -39,13 +39,34 @@ void encriptCiclico(int clave, char palabra[])  {
 			}
 		}
 	}
-	printf("Palabra encriptada: %s", enc);
+	printf("Palabra encriptada: %s\n", enc);
 }
 
 	
-//void encriptMorse(int car, char *palabra) {
-//	
-//}
+void encriptMorse(char *palabra) {
+	char enc[1024] = {0};
+	char abcMinus[28] = "abcdefghijklmnopqrstuvwxyz ";
+	char abcMayus[28] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+	char morse[60][40]={".-","—···","-·-·","-··",".","··-·","--·","····","··","·---","-·-","·-··","--","-·","---","·--·",
+			    "--·-","·-·","···","-","··-","···-","·--","-··-","-·--","--··","/","·----","··---","···--","····-","·····",
+	  		    "-····","--···","---··","----·","-----"};
+	int lenPalabra, lenAbc, i, j, bandera;
+	lenPalabra = strlen(palabra);
+	lenAbc = strlen(abcMinus);
+	bandera = 0;
+	for(i = 0; i < lenPalabra; i++) {
+		for(j = 0; j < lenAbc; j++) {
+			if(abcMinus[j] == palabra[i] || abcMayus[j] == palabra[i]) {
+				bandera = 1;
+				enc[i] = morse[j];
+			}
+		}
+	}
+	if(bandera == 1) {
+		printf("Palabra encriptada en morse: %s\n", enc);
+	}
+
+}
 
 
 
@@ -63,6 +84,7 @@ int main(int argc, char *argv[]) {
 		printf("Ingrese la clave numerica\n");
 		scanf("%d", &clave);
 		encriptCiclico(clave, palabra);
+		encriptMorse(palabra);
 	}
 	return 0;
 }
