@@ -59,9 +59,10 @@ int main(int argc, char *argv[]) {
 		encriptCiclico(clave,argv[2]);
 	} else {
 		printf("Ingrese la palabra:\n");
-		fgets(palabra, 100, stdin);
+		fgets(palabra, 256, stdin);
 		printf("Ingrese la clave numerica\n");
 		scanf("%d", &clave);
 		encriptCiclico(clave, palabra);
 	}
+	return 0;
 }
