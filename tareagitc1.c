@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+/**
+ * Programa de encriptado para la clase de Programación de Sistemas
+ * Autor: Kevin Vásconez L.
+ **/
 
 	
 void encriptCiclico(int clave, char palabra[])  {
